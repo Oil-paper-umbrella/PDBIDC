@@ -80,13 +80,18 @@ export default {
     },
     login: function() {
       console.log(this);
-      if (this.list[1].model === "admin" && this.list[0].model === "admin") {
-        alert("login success");
-        store.commit(types.LOGIN, "123");
-        window.location = "/home";
-      } else {
-        alert("用户活密码错误");
-      }
+      this.axios.post('/dianye/servlet/login',{
+        userName:"admin",
+        password:"admin",
+      }).then(data=>{
+        if(data.status===200){
+          alert("login success");
+          store.commit(types.LOGIN,data.data.token);
+          window.location = "/home";
+        }else{
+          alert('fail')
+        }
+      })
     }
   }
 };

@@ -13,7 +13,7 @@ axios.interceptors.request.use(
     if (store.state.token) {
       // eslint-disable-next-line no-console
       // console.log(store.state.token)
-      config.headers.Authorization = `token ${store.state.token}`
+      config.headers.token = `${store.state.token}`
     }
     // eslint-disable-next-line no-console
     // console.log(config)

@@ -4,6 +4,6 @@ import axios from '../control/filter/http.js'
  * @param {获取四大模块的时间参数} body 
  */
 let getFourModules = async function (body) {
-  return await axios.post('/ElectricityPriject/rest/JsonData/FourModual', body);
+  return await axios.post('/dianye/rest/JsonData/FourModual', body);
 }
 export default getFourModules;

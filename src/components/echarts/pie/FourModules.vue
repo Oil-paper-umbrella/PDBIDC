@@ -68,7 +68,7 @@ export default {
       // 饼图 级联
       this.myChart.on("click", () => {
         if (!this.flag) {
-          this.$router.push({ path: "/show/subpie" });
+          this.$router.push({ path: "/whole/subpie" });
         }
       });
     }

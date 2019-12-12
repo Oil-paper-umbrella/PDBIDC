@@ -1,5 +1,5 @@
 <template>
-  <div class="pie-chart">
+  <div class="pie-chart" v-bind:style="{height:clientHeight}">
     <div id="one-module-container"></div>
   </div>
 </template>
@@ -13,6 +13,7 @@ export default {
   name: "echarts",
   data() {
     return {
+      clientHeight:"100%",
       myChart: {}
     };
   },
@@ -25,6 +26,13 @@ export default {
     });
   },
   methods: {
+    setClient(){
+      let clientHeight = document.documentElement
+              ? document.documentElement.clientHeight
+              : document.body.clientHeight;
+      console.log(clientHeight)
+      this.clientHeight = clientHeight-125+"px";
+    },
     oneModulePieCharts(data) {
       this.myChart = new optionPublicFun().init("one-module-container");
       this.myChart.setOption({
@@ -33,6 +41,12 @@ export default {
         legend: new optionPieFun(data).firstPieLegend("bold", 14, "13%"),
         series: new optionPieFun(data).firstPieSeries("second")
       });
+    }
+  },
+  mounted() {
+    let nowPath = this.$route.path;
+    if (nowPath == "/whole/subpie") {
+      this.setClient();
     }
   }
 };

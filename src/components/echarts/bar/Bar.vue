@@ -92,19 +92,20 @@ export default {
      */
     requestBarChartData(timeid, indexid) {
       getBarChart({ timeid: timeid, indexid: indexid }).then(data => {
+        console.log(data)
         this.$nextTick(() => {
-          if (data.data.cityScore.length <= 0)
+          if (data.data.data.cityScore.length <= 0)
             this.$message.error("请求数据为空");
           this.setLegendStyle(this.flag);
-          this.barCharts(data.data);
-          this.storeData = data.data;
-          this.init(data.data);
+          this.barCharts(data.data.data);
+          this.storeData = data.data.data;
+          this.init(data.data.data);
         });
       });
     },
     requestAllIndexs() {
       requestCommonData.getAllIndexs().then(data => {
-        this.allIndexs = new dataPublicFun(data.data).getAllIndexs(
+        this.allIndexs = new dataPublicFun(data.data.data).getAllIndexs(
           "bar",
           this.allTimes
         );
@@ -112,7 +113,7 @@ export default {
     },
     requestAllTimes() {
       requestCommonData.getAllTimes().then(data => {
-        this.allTimes = new dataPublicFun(data.data).getAllTimes();
+        this.allTimes = new dataPublicFun(data.data.data).getAllTimes();
       });
     },
     /**
