@@ -2,76 +2,79 @@
   <div id="show">
     <!--主体-->
     <div class="main clearfix">
-          <div class="border-container show-view">
-            <p class="open">
-              <router-link to="/whole/pie" tag="div">
-                放大
-              </router-link>
-            </p>
-            <Pie></Pie>
-            <span class="top-left border-span"></span>
-            <span class="top-right border-span"></span>
-            <span class="bottom-left border-span"></span>
-            <span class="bottom-right border-span"></span>
-          </div>
-          <div class="border-container show-view">
+      <div class="border-container show-view">
+        <p class="open">
+          <router-link to="/whole/pie" tag="div">
+            <i class="el-icon-aliquanping1"></i>
+          </router-link>
+        </p>
+        <Pie></Pie>
+        <span class="top-left border-span"></span>
+        <span class="top-right border-span"></span>
+        <span class="bottom-left border-span"></span>
+        <span class="bottom-right border-span"></span>
+      </div>
+      <div class="border-container show-view">
         <Map></Map>
         <span class="top-left border-span"></span>
         <span class="top-right border-span"></span>
         <span class="bottom-left border-span"></span>
         <span class="bottom-right border-span"></span>
       </div>
-          <div class="border-container show-view" >
-            <p class="open">
-              <router-link to="/whole/bar" tag="div">
-              放大
-              </router-link>
-            </p>
-            <Bar></Bar>
-            <span class="top-left border-span"></span>
-            <span class="top-right border-span"></span>
-            <span class="bottom-left border-span"></span>
-            <span class="bottom-right border-span"></span>
-          </div>
-          <div class="border-container show-view">
-            <p class="open">
-              <router-link to="/whole/radar" tag="div">
-                放大
-              </router-link>
-            </p>
-
-            <Radar></Radar>
-            <span class="top-left border-span"></span>
-            <span class="top-right border-span"></span>
-            <span class="bottom-left border-span"></span>
-            <span class="bottom-right border-span"></span>
-          </div>
-          <div class="border-container show-view">
-            <Pline></Pline>
-            <span class="top-left border-span"></span>
-            <span class="top-right border-span"></span>
-            <span class="bottom-left border-span"></span>
-            <span class="bottom-right border-span"></span>
-          </div>
-          <div class="border-container show-view">
-            <Trend></Trend>
-            <span class="top-left border-span"></span>
-            <span class="top-right border-span"></span>
-            <span class="bottom-left border-span"></span>
-            <span class="bottom-right border-span"></span>
-          </div>
+      <div class="border-container show-view">
+        <p class="open">
+          <router-link to="/whole/bar" tag="div">
+            <i class="el-icon-aliquanping1"></i>
+          </router-link>
+        </p>
+        <Bar></Bar>
+        <span class="top-left border-span"></span>
+        <span class="top-right border-span"></span>
+        <span class="bottom-left border-span"></span>
+        <span class="bottom-right border-span"></span>
+      </div>
+      <div class="border-container show-view">
+        <p class="open">
+          <router-link to="/whole/radar" tag="div">
+            <i class="el-icon-aliquanping1"></i>
+          </router-link>
+        </p>
+        <Radar></Radar>
+        <span class="top-left border-span"></span>
+        <span class="top-right border-span"></span>
+        <span class="bottom-left border-span"></span>
+        <span class="bottom-right border-span"></span>
+      </div>
+      <div class="border-container show-view">
+        <p class="open">
+          <router-link to="/whole/line" tag="div">
+            <i class="el-icon-aliquanping1"></i>
+          </router-link>
+        </p>
+        <Pline></Pline>
+        <span class="top-left border-span"></span>
+        <span class="top-right border-span"></span>
+        <span class="bottom-left border-span"></span>
+        <span class="bottom-right border-span"></span>
+      </div>
+      <div class="border-container show-view">
+        <Trend></Trend>
+        <span class="top-left border-span"></span>
+        <span class="top-right border-span"></span>
+        <span class="bottom-left border-span"></span>
+        <span class="bottom-right border-span"></span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  let Pie =()=>import("../../components/echarts/pie/FourModules.vue") ;
-  let Bar =()=>import("../../components/echarts/bar/Bar.vue") ;
-  let Pline =()=>import("../../components/echarts/line/Line.vue") ;
-  let Map =()=>import("../../components/echarts/map/Map.vue") ;
-  let Radar =()=>import("../../components/echarts/radar/Radar.vue") ;
-  // import Gauge from "../../components/echarts/gauge/Gauge.vue";
-  let Trend =()=>import("../../components/echarts/trend/Trend.vue");
+let Pie = () => import("../../components/echarts/pie/FourModules.vue");
+let Bar = () => import("../../components/echarts/bar/Bar.vue");
+let Pline = () => import("../../components/echarts/line/Line.vue");
+let Map = () => import("../../components/echarts/map/Map.vue");
+let Radar = () => import("../../components/echarts/radar/Radar.vue");
+let Trend = () => import("../../components/echarts/trend/Trend.vue");
 export default {
   name: "show",
   props: {
@@ -87,7 +90,7 @@ export default {
   created() {
     this.getClientHeight();
   },
-  components:{
+  components: {
     Pie,
     Bar,
     Pline,
@@ -102,15 +105,15 @@ export default {
         : document.body.clientHeight;
       this.pageStyle.height = clientHeight - 125 + "px";
       console.log(this.pageStyle.height);
-    },
+    }
   },
   mounted() {
-    // this.getClientHeight();
-    // let pd_this = this;
+    this.getClientHeight();
+    let pd_this = this;
     // 监听浏览器窗口的变化
-    // window.onresize = function() {
-    //   pd_this.getClientHeight();
-    // };
+    window.onresize = function() {
+      pd_this.getClientHeight();
+    };
   }
 };
 </script>
@@ -126,6 +129,14 @@ a:active {
 }
 #show {
   background: #111739;
+  .el-icon-aliquanping1 {
+    // 全屏 icon 样式
+    font-size: 1.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+  }
   .clearfix:before,
   .clearfix:after {
     display: table;
@@ -149,15 +160,15 @@ a:active {
     }
   }
   .main {
-    padding: 0 30px 30px;
-    .border-container{
-      .open{
+    padding: 0 20px 20px;
+    .border-container {
+      .open {
         width: 20%;
         margin: auto;
       }
       position: relative;
       margin-top: 15px;
-      padding: 10px 10px 0 10px;
+      padding: 5px 5px 0 5px;
       border: 1px solid #54dcf2;
       .el-icon-alisuoxiao {
         font-size: 1.5rem;
@@ -243,7 +254,7 @@ a:active {
     width: 100%;
     height: 100%;
   }
-  .show-view{
+  .show-view {
     width: 30%;
     height: 350px;
     float: left;
@@ -252,5 +263,4 @@ a:active {
     overflow: inherit;
   }
 }
-
 </style>

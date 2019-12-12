@@ -7,6 +7,12 @@
 <script>
 import optionPublicFun from "../../../utils/optionPublic.js";
 import echarts from "echarts"
+require("echarts/lib/chart/gauge")
+require("echarts/lib/component/tooltip")
+require("echarts/lib/component/title")
+require("echarts/lib/component/legend")
+require("echarts/lib/component/toolbox")
+require("echarts/lib/component/grid")
 export default {
   name: "gauge-chart",
   data() {
@@ -30,9 +36,7 @@ export default {
       var base = +new Date(1968, 9, 3);
       var oneDay = 24 * 3600 * 1000;
       var date = [];
-
       var data = [Math.random() * 300];
-
       for (var i = 1; i < 20000; i++) {
         var now = new Date((base += oneDay));
         date.push(

@@ -1,5 +1,5 @@
 //echarts 组件
-import echarts from "echarts";
+import * as echarts from 'echarts/lib/echarts';
 class optionPublicFun {
   /**
    * @namespace init

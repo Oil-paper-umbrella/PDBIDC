@@ -40,11 +40,15 @@ import DataBarFun from "./dataBar.js";
 import optionBarFun from "./optionBar.js";
 import requestCommonData from "../../../api/common.js";
 import getBarChart from "../../../api/bar.js";
+require("echarts/lib/chart/bar")
+require("echarts/lib/component/tooltip")
+require("echarts/lib/component/legend")
+require("echarts/lib/component/grid")
 export default {
   name: "echarts",
   data() {
     return {
-      clientHeight:'100%',
+      clientHeight: "100%",
       myChart: {},
       barDataObj: {
         overAvg: [], // 超过平均分的 城市得分
@@ -71,11 +75,12 @@ export default {
   },
   mounted() {
     // 页面路由 如果为 whole 则切换字体样式
-    let nowPath = this.$route.path
+    let nowPath = this.$route.path;
     if (nowPath == "/whole/bar") {
       this.setClient();
+    } else if (nowPath == "/whole") {
+      this.flag = true;
     }
-
   },
   methods: {
     //设置legend样式
@@ -92,7 +97,6 @@ export default {
      */
     requestBarChartData(timeid, indexid) {
       getBarChart({ timeid: timeid, indexid: indexid }).then(data => {
-        console.log(data)
         this.$nextTick(() => {
           if (data.data.data.cityScore.length <= 0)
             this.$message.error("请求数据为空");
@@ -103,6 +107,7 @@ export default {
         });
       });
     },
+    // 请求所有指标
     requestAllIndexs() {
       requestCommonData.getAllIndexs().then(data => {
         this.allIndexs = new dataPublicFun(data.data.data).getAllIndexs(
@@ -111,6 +116,7 @@ export default {
         );
       });
     },
+    // 请求所有季度
     requestAllTimes() {
       requestCommonData.getAllTimes().then(data => {
         this.allTimes = new dataPublicFun(data.data.data).getAllTimes();
@@ -148,21 +154,22 @@ export default {
     },
     barCharts(data) {
       this.myChart = new optionPublicFun().init("bar-container");
+      let opBarFnc = new optionBarFun(data);
       // 数据渲染
       this.myChart.setOption({
-        legend: new optionBarFun(data).barLegend(
+        legend: opBarFnc.barLegend(
           this.barDataObj.weight,
           this.barDataObj.size
         ),
-        tooltip: new optionBarFun(data).barTooltip(
+        tooltip: opBarFnc.barTooltip(
           this.barDataObj.xAxisData,
           this.barDataObj.weight,
           this.barDataObj.size
         ),
-        grid: new optionBarFun(data).barGrid(),
-        xAxis: new optionBarFun(data).barXaxis(this.barDataObj.xAxisData),
-        yAxis: new optionBarFun(data).barYaxis(this.barDataObj.indexUnit),
-        series: new optionBarFun(data).barSeries(
+        grid: opBarFnc.barGrid(),
+        xAxis: opBarFnc.barXaxis(this.barDataObj.xAxisData),
+        yAxis: opBarFnc.barYaxis(this.barDataObj.indexUnit),
+        series: opBarFnc.barSeries(
           this.barDataObj.otherCityScore,
           this.barDataObj.pdCityScore,
           this.barDataObj.overAvg,
@@ -170,12 +177,12 @@ export default {
         )
       });
     },
-    setClient(){
+    setClient() {
       let clientHeight = document.documentElement
-              ? document.documentElement.clientHeight
-              : document.body.clientHeight;
-      console.log(clientHeight)
-      this.clientHeight = clientHeight-125+"px";
+        ? document.documentElement.clientHeight
+        : document.body.clientHeight;
+      console.log(clientHeight);
+      this.clientHeight = clientHeight - 125 + "px";
     }
   },
   watch: {
@@ -191,7 +198,7 @@ export default {
         this.requestBarChartData(val[1], val[0]);
       }
     }
-  },
+  }
 };
 </script>
 
@@ -245,7 +252,7 @@ export default {
   #bar-container {
     margin-top: 10px;
     width: 100%;
-    height: 89%;
+    height: 90%;
   }
 }
 </style>

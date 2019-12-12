@@ -8,6 +8,9 @@
 import optionPublicFun from "../../../utils/optionPublic.js";
 import optionRadarFun from "./optionRadar.js";
 import getFourModual from "../../../api/modules.js";
+require("echarts/lib/chart/radar")
+require("echarts/lib/component/tooltip")
+require("echarts/lib/component/legend")
 const selectedCity = {
   平顶山市: true,
   安阳市: false,
@@ -52,7 +55,7 @@ export default {
   name: "echarts",
   data() {
     return {
-      clientHeight:'100%',
+      clientHeight: "100%",
       myChart: {},
       radarLegendStyle: {
         weight: "bold",
@@ -92,17 +95,17 @@ export default {
     });
   },
   methods: {
-    setClient(){
+    setClient() {
       let clientHeight = document.documentElement
-              ? document.documentElement.clientHeight
-              : document.body.clientHeight;
-      console.log(clientHeight)
-      this.clientHeight = clientHeight-125+"px";
+        ? document.documentElement.clientHeight
+        : document.body.clientHeight;
+      console.log(clientHeight);
+      this.clientHeight = clientHeight - 125 + "px";
     },
     setLegendStyle() {
       if (this.flag) {
         this.radarLegendStyle.weight = "normal";
-        this.radarLegendStyle.size = 12;
+        this.radarLegendStyle.size = 9;
         this.radarLegendStyle.legendRight = 0;
         this.radarLegendStyle.width = 2;
       }
@@ -110,9 +113,11 @@ export default {
     radarCharts() {
       let radarObj = this.radarLegendStyle;
       let pd_this = this;
-      this.myChart = new optionPublicFun().init("radar-container");
+      let opPubFnc = new optionPublicFun();
+      let opRadarFnc = new optionRadarFun();
+      this.myChart = opPubFnc.init("radar-container");
       let option = {
-        legend: new optionRadarFun().radarLegend(
+        legend: opRadarFnc.radarLegend(
           radarObj.weight,
           radarObj.size,
           radarObj.legendRight,
@@ -130,9 +135,10 @@ export default {
             { name: "创新创效能力", max: 200, color: "#54DCF2" },
             { name: "基础保障力", max: 200, color: "#FCD85A" }
           ],
-          center: ["40%", "50%"],
-          radius: new optionRadarFun().radarRadius(this.flag),
+          center: ["45%", "50%"],
+          radius: opRadarFnc.radarRadius(this.flag),
           color: [],
+          label: opRadarFnc.radarLabel(this.radarLegendStyle.size),
           splitArea: {
             areaStyle: {
               color: areaColor
@@ -155,13 +161,13 @@ export default {
       this.myChart.setOption(option);
       // legend 变化事件
       this.myChart.on("legendselectchanged", function(params) {
-        let stack = new optionPublicFun().getStack(params);
+        let stack = opPubFnc.getStack(params);
         if (stack == 4) {
           pd_this.$message.warning({
             showClose: true,
             message: "糟糕，数据太多了，眼花缭乱的。请至多对三个地市进行比较"
           });
-          let newOption = new optionPublicFun().initSelectedCity(
+          let newOption = opPubFnc.initSelectedCity(
             params,
             defaultCityName,
             selectedCity,
@@ -176,6 +182,8 @@ export default {
     let nowPath = this.$route.path;
     if (nowPath == "/whole/radar") {
       this.setClient();
+    } else if (nowPath == "/whole") {
+      this.flag = true;
     }
   }
 };
@@ -187,7 +195,7 @@ export default {
   width: 100%;
   #radar-container {
     width: 100%;
-    height: 90%;
+    height: 100%;
   }
 }
 </style>

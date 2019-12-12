@@ -5,7 +5,9 @@ import axios from '../control/filter/http.js'
 let getAllIndexs = async function () {
   return await axios.get('/dianye/rest/JsonData/allIndexs');
 }
-
+/**
+ * @namespace getAllTimes 获取所有季度
+ */
 let getAllTimes = async function () {
   return await axios.get('/dianye/rest/JsonData/allTimes');
 }

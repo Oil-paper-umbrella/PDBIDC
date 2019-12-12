@@ -10,17 +10,24 @@
       router
       unique-opened
     >
-      <el-submenu v-for="(item,index) in menuList" :index="item.menuIndex" :key="index">
+      <el-submenu index="1">
         <template slot="title">
-          <i :class="item.iconClass"></i>
-          <span slot="title">{{ item.menuTitle }}</span>
+          <i class="el-icon-monitor"></i>
+          <span slot="title">数据展示</span>
         </template>
         <a href="/whole" style="padding-left:55px;" class="el-menu-item">数据展示</a>
+        <el-menu-item v-for="(item,i) in dataMenuList" :key="i" :index="item.route">{{ item.name }}</el-menu-item>
+      </el-submenu>
+      <el-submenu index="2">
+        <template slot="title">
+          <i class="el-icon-paperclip"></i>
+          <span slot="title">后台管理</span>
+        </template>
         <el-menu-item
-          v-for="(subItem,i) in item.submenuList"
+          v-for="(item,i) in manageMenuList"
           :key="i"
-          :index="subItem.route"
-        >{{ subItem.name }}</el-menu-item>
+          :index="item.route"
+        >{{ item.name }}</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
@@ -32,34 +39,21 @@ export default {
   name: "index-aside",
   data() {
     return {
-      // 侧边栏，功能模块数组
-      menuList: [
-        {
-          menuIndex: "1",
-          menuTitle: "数据展示",
-          iconClass: "el-icon-monitor",
-          submenuList: [
-            { route: "/cluster", name: "聚类数据显示" ,type:'child' },
-            { route: "/analysis", name: "分析结果展示" ,type:'child'}
-          ]
-        },
-        {
-          menuIndex: "2",
-          menuTitle: "后台管理",
-          iconClass: "el-icon-paperclip",
-          submenuList: [
-            { route: "/jurisdiction", name: "空间管理" },
-            { route: "/user", name: "用户管理" },
-            { route: "/role", name: "角色管理" },
-            { route: "/setindex", name: "指标设定" },
-            { route: "/port", name: "数据导入、导出" },
-            { route: "/operation", name: "数据操作" },
-            { route: "/dataAnalysis", name: "数据分析" },
-            { route: "/forecast", name: "指标预测" },
-            { route: "/interface", name: "接口管理" },
-            { route: "/message", name: "邮件箱" }
-          ]
-        }
+      dataMenuList: [
+        { route: "/cluster", name: "聚类数据显示", type: "child" },
+        { route: "/analysis", name: "分析结果展示", type: "child" }
+      ],
+      manageMenuList: [
+        { route: "/jurisdiction", name: "空间管理" },
+        { route: "/user", name: "用户管理" },
+        { route: "/role", name: "角色管理" },
+        { route: "/setindex", name: "指标设定" },
+        { route: "/port", name: "数据导入、导出" },
+        { route: "/operation", name: "数据操作" },
+        { route: "/dataAnalysis", name: "数据分析" },
+        { route: "/forecast", name: "指标预测" },
+        { route: "/interface", name: "接口管理" },
+        { route: "/message", name: "邮件箱" }
       ]
     };
   },
@@ -103,6 +97,10 @@ export default {
 </script>
 
 <style lang="scss">
+a,
+a:hover {
+  text-decoration: none;
+}
 .index-aside {
   width: 100%;
   height: 100%;

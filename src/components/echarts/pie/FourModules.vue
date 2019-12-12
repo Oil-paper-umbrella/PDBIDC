@@ -9,14 +9,18 @@ import optionPublicFun from "../../../utils/optionPublic.js";
 import optionPieFun from "./optionPie.js";
 import getFourModual from "../../../api/modules.js";
 const colors = ["#FCD85A", "#0084C8", "#D8514B", "#9CCB63"];
+require("echarts/lib/chart/pie")
+require("echarts/lib/component/tooltip")
+require("echarts/lib/component/legend")
 export default {
   name: "pie-chart",
   data() {
     return {
-      clientHeight:"100%",
+      clientHeight: "100%",
       myChart: {},
       flag: false, // 切换legend样式
-      pieLgendStyle: { // legend 样式
+      pieLgendStyle: {
+        // legend 样式
         weight: "bold",
         size: 14,
         legendRight: "13%"
@@ -28,42 +32,41 @@ export default {
     getFourModual({ timeid: 1 }).then(data => {
       this.$nextTick(() => {
         this.setLegendStyle(this.flag);
-        this.fourModulesPieCharts(data.data);
+        this.fourModulesPieCharts(data.data.data);
       });
     });
   },
   methods: {
-    setLegendStyle(flag) {// 设置 legend 样式参数
+    setLegendStyle(flag) {
+      // 设置 legend 样式参数
       if (flag) {
         this.pieLgendStyle.weight = "normal";
         this.pieLgendStyle.size = 9;
-        this.pieLgendStyle.legendRight = "0";
+        this.pieLgendStyle.legendRight = "-5";
       }
     },
-    setClient(){
+    setClient() {
       let clientHeight = document.documentElement
-              ? document.documentElement.clientHeight
-              : document.body.clientHeight;
-      console.log(clientHeight)
-      this.clientHeight = clientHeight-125+"px";
+        ? document.documentElement.clientHeight
+        : document.body.clientHeight;
+      console.log(clientHeight);
+      this.clientHeight = clientHeight - 125 + "px";
     },
     // pie 数据渲染
     fourModulesPieCharts(data) {
       let pieObj = this.pieLgendStyle;
+      let opPieFnc = new optionPieFun(data);
       this.myChart = new optionPublicFun().init("four-modules-container");
       this.myChart.setOption({
-        tooltip: new optionPieFun(data).firstPieTooltip(
-          pieObj.weight,
-          pieObj.size,
-          "first"
-        ),
-        legend: new optionPieFun(data).firstPieLegend(
+        tooltip: opPieFnc.firstPieTooltip(pieObj.weight, pieObj.size, "first"),
+        legend: opPieFnc.firstPieLegend(
           pieObj.weight,
           pieObj.size,
           pieObj.legendRight
         ),
         color: colors,
-        series: new optionPieFun(data).firstPieSeries("first")
+        label: opPieFnc.pieLabel(this.pieLgendStyle.size),
+        series: opPieFnc.firstPieSeries("first")
       });
       // 饼图 级联
       this.myChart.on("click", () => {
@@ -77,6 +80,8 @@ export default {
     let nowPath = this.$route.path;
     if (nowPath == "/whole/pie") {
       this.setClient();
+    } else if (nowPath == "/whole") {
+      this.flag = true;
     }
   }
 };
@@ -89,7 +94,7 @@ export default {
   height: 100%;
   #four-modules-container {
     width: 100%;
-    height: 92%;
+    height: 100%;
   }
 }
 </style>

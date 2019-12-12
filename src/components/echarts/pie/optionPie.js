@@ -40,15 +40,26 @@ class optionPieFun {
     return legend;
   }
   /**
+   * @namespace pieLabel
+   * @param {字体大小} size 
+   */
+  pieLabel(size) {
+    let label= {
+      fontSize: size
+    }
+    return label;
+  }
+  /**
    * @namespace firstPieSeries
    * @param {判断饼图类型} type 
    */
   firstPieSeries(type) {
+    console.log(type);
     let result = [
       {
         type: 'pie',
-        radius: '70%',
-        center: ['46%', '50%'],
+        radius: '75%',
+        center: ['43%', '50%'],
         data: null,
         itemStyle: {
           emphasis: {
@@ -73,6 +84,8 @@ class optionPieFun {
     }
     else
       throw new Error("firstPieSeries param type is coundn't find");
+    console.log("result");
+    console.log(result);
     return result;
   }
 }

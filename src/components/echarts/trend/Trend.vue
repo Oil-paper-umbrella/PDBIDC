@@ -6,6 +6,9 @@
 
 <script>
 import optionPublicFun from "../../../utils/optionPublic.js";
+require("echarts/lib/chart/line")
+require("echarts/lib/component/tooltip")
+require("echarts/lib/component/grid")
 export default {
   name: "echarts",
   data() {
@@ -28,13 +31,6 @@ export default {
             return [pt[0], "10%"];
           }
         },
-        title: {
-          left: "center",
-          text: "一周日均流量趋势",
-          textStyle: {
-            color: "#fff"
-          }
-        },
         xAxis: {
           type: "category",
           boundaryGap: false,
@@ -45,7 +41,7 @@ export default {
               width: 1
             }
           },
-          data: ["11/1", "11/2", "11/3", "11/4", "11/5", "11/6", "11/7"]
+          data: ["11/1", "11/2", "11/3", "11/4", "11/5", "11/6", "11/7","11/6", "11/7"]
         },
         axisLabel: {
           color: "#fff"
@@ -81,7 +77,7 @@ export default {
             areaStyle: {
               color: "#2C4369"
             },
-            data: ["89", "37", "66", "15", "46", "5", "35"]
+            data: ["89", "37", "66", "15", "46", "5", "35","46", "5"]
           }
         ]
       });
@@ -107,7 +103,7 @@ export default {
   position: relative;
   #trend-container {
     width: 100%;
-    height: 90%;
+    height: 100%;
   }
 }
 </style>

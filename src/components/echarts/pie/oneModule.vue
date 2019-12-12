@@ -9,11 +9,14 @@ import optionPublicFun from "../../../utils/optionPublic.js";
 import optionPieFun from "./optionPie.js";
 import getOneModual from "../../../api/oneModule.js";
 const colors = ["#FCD85A", "#0084C8", "#D8514B", "#9CCB63"];
+require("echarts/lib/chart/pie")
+require("echarts/lib/component/tooltip")
+require("echarts/lib/component/legend")
 export default {
   name: "echarts",
   data() {
     return {
-      clientHeight:"100%",
+      clientHeight: "100%",
       myChart: {}
     };
   },
@@ -21,25 +24,26 @@ export default {
     // 向后台发送数据请求
     getOneModual({ timeid: 1, moduleid: 1 }).then(data => {
       this.$nextTick(() => {
-        this.oneModulePieCharts(data.data);
+        this.oneModulePieCharts(data.data.data);
       });
     });
   },
   methods: {
-    setClient(){
+    setClient() {
       let clientHeight = document.documentElement
-              ? document.documentElement.clientHeight
-              : document.body.clientHeight;
-      console.log(clientHeight)
-      this.clientHeight = clientHeight-125+"px";
+        ? document.documentElement.clientHeight
+        : document.body.clientHeight;
+      console.log(clientHeight);
+      this.clientHeight = clientHeight - 125 + "px";
     },
     oneModulePieCharts(data) {
       this.myChart = new optionPublicFun().init("one-module-container");
+      let opPieFnc = new optionPieFun(data);
       this.myChart.setOption({
         color: colors,
-        tooltip: new optionPieFun(data).firstPieTooltip("bold", 14,"second"),
-        legend: new optionPieFun(data).firstPieLegend("bold", 14, "13%"),
-        series: new optionPieFun(data).firstPieSeries("second")
+        tooltip: opPieFnc.firstPieTooltip("bold", 14, "second"),
+        legend: opPieFnc.firstPieLegend("bold", 14, "13%"),
+        series: opPieFnc.firstPieSeries("second")
       });
     }
   },

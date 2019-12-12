@@ -80,18 +80,20 @@ export default {
     },
     login: function() {
       console.log(this);
-      this.axios.post('/dianye/servlet/login',{
-        userName:"admin",
-        password:"admin",
-      }).then(data=>{
-        if(data.status===200){
-          alert("login success");
-          store.commit(types.LOGIN,data.data.token);
-          window.location = "/home";
-        }else{
-          alert('fail')
-        }
-      })
+      this.axios
+        .post("/dianye/servlet/login", {
+          userName: "admin",
+          password: "admin"
+        })
+        .then(data => {
+          if (data.status === 200) {
+            alert("login success");
+            store.commit(types.LOGIN, data.data.token);
+            window.location = "/home";
+          } else {
+            alert("fail");
+          }
+        });
     }
   }
 };

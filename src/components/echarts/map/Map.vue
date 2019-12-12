@@ -8,6 +8,8 @@
 require("echarts/map/js/province/henan");
 import optionPublicFun from "../../../utils/optionPublic.js";
 import optionMapFun from "./optionMap.js";
+require("echarts/lib/chart/map")
+require("echarts/lib/component/tooltip")
 export default {
   name: "map-chart",
   data() {
@@ -203,7 +205,7 @@ export default {
   height: 100%;
   #map-container {
     width: 100%;
-    height: 90%;
+    height: 100%;
   }
 }
 </style>

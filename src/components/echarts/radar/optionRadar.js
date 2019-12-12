@@ -14,12 +14,22 @@ class optionRadarFun {
       type: 'scroll',
       orient: 'vertical',
       right: legendRight,
-      top: '10%',
+      top: '9%',
       selectedMode: 'multiple',
       selected: selectedCity,
       textStyle: new optionPublicFun().textStyle(weight, size)
     }
     return legend
+  }
+  /**
+   * @namespace radarLabel
+   * @param {字体大小} size 
+   */
+  radarLabel(size){
+    let label = {
+      fontSize: size
+    }
+    return label;
   }
   /**
    * @namespace radarRadius
@@ -28,7 +38,7 @@ class optionRadarFun {
   radarRadius(flag) {
     let radius;
     if (flag) {
-      radius = '60%';
+      radius = '68%';
     } else {
       radius = '85%';
     }

@@ -164,7 +164,8 @@ class optionBarFun {
         },
         max: new dataBarFun(this.data).maxScoreWithAvg(),
         splitNumber: splitNum,
-        name: "低于平均值/" + indexUnit
+        // name: "低于平均值/" + indexUnit
+        name: indexUnit
       },
       {
         gridIndex: 1, //对应的是grid  通过grid设置X Y相对位置
