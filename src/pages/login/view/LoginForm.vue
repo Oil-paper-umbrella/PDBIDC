@@ -70,7 +70,7 @@ export default {
       this.list[index].className = "account active";
       this.list[index].bg = "bg active";
     },
-    login: function() {
+    /* login: function() {
       console.log(this);
       this.axios
         .post("/dianye/servlet/login", {
@@ -86,6 +86,16 @@ export default {
             alert("fail");
           }
         });
+    } */
+    login: function() {
+      console.log(this);
+      if (this.list[1].model === "admin" && this.list[0].model === "admin") {
+        alert("login success");
+        store.commit(types.LOGIN, "123");
+        window.location = "/home";
+      } else {
+        alert("用户活密码错误");
+      }
     }
   }
 };
