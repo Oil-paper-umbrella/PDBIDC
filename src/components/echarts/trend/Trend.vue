@@ -24,12 +24,12 @@ export default {
   methods: {
     barCharts() {
       this.myChart = new optionPublicFun().init("trend-container");
-      this.myChart.setOption({
+      let option = {
         tooltip: {
           trigger: "axis",
-          position: function(pt) {
-            return [pt[0], "10%"];
-          }
+          // position: function(pt) {
+          //   return [pt[0], "10%"];
+          // }
         },
         xAxis: {
           type: "category",
@@ -41,7 +41,13 @@ export default {
               width: 1
             }
           },
-          data: ["11/1", "11/2", "11/3", "11/4", "11/5", "11/6", "11/7","11/6", "11/7"]
+          data: ["11/1", "11/2", "11/3", "11/4", "11/5", "11/6", "11/7","11/8", "11/9", "11/10", "11/11", "11/12", "11/13", "11/14"]
+        },
+        grid: {
+          top: '5%',
+          left: '7%',
+          bottom: '8%',
+          right: '1%'
         },
         axisLabel: {
           color: "#fff"
@@ -61,8 +67,7 @@ export default {
               color: "#1B283E",
               width: 1
             }
-          },
-          boundaryGap: [0, "100%"]
+          }
         },
         series: [
           {
@@ -77,19 +82,11 @@ export default {
             areaStyle: {
               color: "#2C4369"
             },
-            data: ["89", "37", "66", "15", "46", "5", "35","46", "5"]
+            data: ["89", "37", "66", "75", "46", "55", "35","46", "85","66", "65", "46", "95", "35"]
           }
         ]
-      });
-    }
-  },
-  watch: {
-    echartObj: {
-      handler: function(val) {
-        this.echartObj = val;
-        this.barCharts();
-      },
-      deep: true
+      };
+      this.myChart.setOption(option);
     }
   }
 };

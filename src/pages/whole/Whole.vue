@@ -3,7 +3,7 @@
     <!--头部-->
     <div class="header">
       运营数据管理技术服务
-      <a href="/whole" class="whole-back">
+      <a href="javascript:history.back();" class="whole-back">
         <button class="button type1">返回</button>
       </a>
       <a href="/" class="whole-home">

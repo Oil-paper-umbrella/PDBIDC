@@ -1,5 +1,5 @@
 <template>
-  <div class="user">
+  <div class="space">
     <el-row>
       <h1>空间管理</h1>
     </el-row>

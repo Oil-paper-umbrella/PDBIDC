@@ -7,10 +7,10 @@
 <script>
 import optionPublicFun from "../../../utils/optionPublic.js";
 import optionRadarFun from "./optionRadar.js";
-import getFourModual from "../../../api/modules.js";
-require("echarts/lib/chart/radar")
-require("echarts/lib/component/tooltip")
-require("echarts/lib/component/legend")
+require("echarts/lib/chart/radar");
+require("echarts/lib/component/tooltip");
+require("echarts/lib/component/legendScroll");
+require("echarts/lib/component/legend");
 const selectedCity = {
   平顶山市: true,
   安阳市: false,
@@ -87,11 +87,9 @@ export default {
     };
   },
   created() {
-    getFourModual({ timeid: 1 }).then(() => {
-      this.$nextTick(() => {
-        this.setLegendStyle();
-        this.radarCharts();
-      });
+    this.$nextTick(() => {
+      this.setLegendStyle();
+      this.radarCharts();
     });
   },
   methods: {
@@ -106,7 +104,7 @@ export default {
       if (this.flag) {
         this.radarLegendStyle.weight = "normal";
         this.radarLegendStyle.size = 9;
-        this.radarLegendStyle.legendRight = 0;
+        this.radarLegendStyle.legendRight = "3%";
         this.radarLegendStyle.width = 2;
       }
     },
@@ -135,7 +133,7 @@ export default {
             { name: "创新创效能力", max: 200, color: "#54DCF2" },
             { name: "基础保障力", max: 200, color: "#FCD85A" }
           ],
-          center: ["45%", "50%"],
+          center: ["41%", "50%"],
           radius: opRadarFnc.radarRadius(this.flag),
           color: [],
           label: opRadarFnc.radarLabel(this.radarLegendStyle.size),

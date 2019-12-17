@@ -56,7 +56,7 @@ const devServer = {
       pathRewrite: {// 重写target中的请求地址，也就是说，在请求的时候，url用'/login'增加为'http://127.0.0.1:8000/login'
         '^/dianye/servlet/login': '/dianye/servlet/login'
       }
-    }
+    },
   },
   historyApiFallback: {
     rewrites: [

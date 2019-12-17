@@ -20,12 +20,12 @@ export default {
   position: relative;
   overflow-x: hidden;
   background: #111739;
-  i {
-    color: #fff !important;
-  }
-  i:hover {
-    color: #409eff !important;
-  }
+  // i {
+  //   color: #fff !important;
+  // }
+  // i:hover {
+  //   color: #409eff !important;
+  // }
   .el-icon-close,
   .el-icon-arrow-up {
     color: #9a9da3;

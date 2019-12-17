@@ -1,9 +1,17 @@
 <template>
-    <div class="container" id="particles"></div>
+    <div class="container" id="particles" :style="pageStyle"></div>
 </template>
 <script>
 import particles from "particles.js";
 export default {
+  data(){
+    return {
+      pageStyle: {
+        width: '100%',
+        height: '100%'
+      }
+    }
+  },
   mounted() {
     let particle = document.getElementById("particles");
     particle.style.width = document.documentElement.clientWidth + "px";
@@ -118,13 +126,24 @@ export default {
       },
       retina_detect: true
     });
+  },
+  methods: {
+    setClient() {
+      let clientWidth = document.documentElement
+        ? document.documentElement.clientWidth
+        : document.body.clientWidth;
+      this.pageStyle.width = clientWidth + "px";
+      let clientHeight = document.documentElement
+        ? document.documentElement.clientHeight
+        : document.body.clientHeight;
+      this.pageStyle.height = clientHeight + "px";
+    },
   }
 };
 </script>
 
 <style lang="scss">
 .container {
-  width: 100%;
   top: 0px;
   position: relative;
   background: url("../../../assets/images/login-bg.png") no-repeat center !important;

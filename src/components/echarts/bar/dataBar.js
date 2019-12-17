@@ -143,6 +143,7 @@ class DataBarFun {
     } else {
       maxData = belowAvgs;
     }
+    maxData = Math.ceil(maxData);
     return maxData;
   }
 }

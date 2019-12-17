@@ -62,7 +62,7 @@ class optionBarFun {
         show: false,
         bottom: "12%",
         containLabel: false,
-        height: "40%"
+        height: "40%",
       },
       {//X轴
         show: false,

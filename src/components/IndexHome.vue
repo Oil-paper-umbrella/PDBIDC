@@ -1,11 +1,9 @@
 <template>
-  <div class="index-home">
-    首页
-  </div>
+  <div class="index-home">首页</div>
 </template>
 <script>
 export default {
-  name: "index-home",
+  name: "index-home"
 };
 </script>
 <style lang="scss">

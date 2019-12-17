@@ -1,5 +1,5 @@
+import Vue from 'vue';
 
-import Vue from 'vue'
 // v-dialogDrag: 弹窗拖拽属性
 Vue.directive('dialogDrag', {
   bind(el) {
@@ -8,7 +8,6 @@ Vue.directive('dialogDrag', {
     //dialogHeaderEl.style.cursor = 'move';
     dialogHeaderEl.style.cssText += ';cursor:move;'
     dragDom.style.cssText += ';top:0px;'
-
     // 获取原有属性 ie dom元素.currentStyle 火狐谷歌 window.getComputedStyle(dom元素, null);
     const sty = (function () {
       if (window.document.currentStyle) {
@@ -34,7 +33,6 @@ Vue.directive('dialogDrag', {
 
       const minDragDomTop = dragDom.offsetTop;
       const maxDragDomTop = screenHeight - dragDom.offsetTop - dragDomheight;
-
 
       // 获取到的值带px 正则匹配替换
       let styL = sty(dragDom, 'left');
@@ -75,7 +73,6 @@ Vue.directive('dialogDrag', {
         document.onmousemove = null;
         document.onmouseup = null;
       };
-      return false
     }
   }
 })

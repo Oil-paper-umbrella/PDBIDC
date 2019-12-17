@@ -54,6 +54,7 @@ class dataLineFun {
         minScore = score[i]
       }
     }
+    minScore = Math.floor(minScore);
     return minScore;
   }
 }

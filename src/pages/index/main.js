@@ -44,7 +44,14 @@ import {
   Main,
   MessageBox,
   Message,
-  Notification
+  Notification,
+  Collapse,
+  CollapseItem,
+  Table,
+  TableColumn,
+  Option,
+  OptionGroup,
+  Pagination
 } from 'element-ui';
 
 Vue.use(Dialog);
@@ -78,6 +85,13 @@ Vue.use(Container);
 Vue.use(Header);
 Vue.use(Aside);
 Vue.use(Main);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Collapse);
+Vue.use(CollapseItem);
+Vue.use(Option);
+Vue.use(OptionGroup);
+Vue.use(Pagination);
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;
 Vue.prototype.$confirm = MessageBox.confirm;
@@ -85,10 +99,27 @@ Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;
 
-import moment from 'moment'
-Vue.filter('filterDate', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
-  // 如果直接调用得到的是当前的时间，可以通过传递值，来获取对应的时间
-  return moment(dataStr).format(pattern);
+// import moment from 'moment'
+Vue.filter('filterDate', function (time) {
+  // console.log("filter");
+  // console.log(dataStr);
+  // // 如果直接调用得到的是当前的时间，可以通过传递值，来获取对应的时间
+  // return dataStr.format(pattern);
+
+  let date = new Date(time)//把定义的时间赋值进来进行下面的转换
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let second = date.getSeconds();
+  if(hour < 10)
+    hour = "0"+hour;
+  if(minute < 10)
+    minute = "0"+minute;
+  if(second < 10)
+    second = "0"+second;
+  return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
 })
 new Vue({
   router,

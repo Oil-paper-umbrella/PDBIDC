@@ -32,7 +32,7 @@ let routes = [
     component: FourModules
   },
   {
-    path: '/whole/subpie',
+    path: '/whole/subpie/:time/:module',
     name: '饼图',
     component: OneModule
   },

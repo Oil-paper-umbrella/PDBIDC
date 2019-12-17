@@ -17,16 +17,8 @@
           </div>
           <input type="button" value="立即登录" v-on:click="login()" />
         </div>
-        <img
-          class="close"
-          src="../../../assets/images/close.png"
-          alt="关闭"
-          @mouseover="flag = true"
-          @mouseout="flag = false"
-        />
         <span v-if="flag" id="closetip">关闭</span>
       </div>
-      <img class="loginBox" src="../../../assets/images/loginBox.png" />
     </div>
   </transition>
 </template>
@@ -47,20 +39,20 @@ export default {
   created() {
     this.clearActive();
   },
-  mounted: function() {
-    var login = document.getElementsByClassName("login")[0];
-    login.style.top =
-      document.documentElement.scrollTop +
-      (document.documentElement.clientHeight - login.offsetHeight) / 2 +
-      "px";
-    login.style.left =
-      document.documentElement.scrollLeft +
-      (document.documentElement.clientWidth - login.offsetWidth) / 2 +
-      "px";
-    var loginBox = document.getElementsByClassName("loginBox")[0];
-    loginBox.style.top = login.style.top;
-    loginBox.style.left = login.style.left;
-  },
+  // mounted: function() {
+  //   var login = document.getElementsByClassName("login")[0];
+  //   login.style.top =
+  //     document.documentElement.scrollTop +
+  //     (document.documentElement.clientHeight - login.offsetHeight) / 2 +
+  //     "px";
+  //   login.style.left =
+  //     document.documentElement.scrollLeft +
+  //     (document.documentElement.clientWidth - login.offsetWidth) / 2 +
+  //     "px";
+  //   var loginBox = document.getElementsByClassName("loginBox")[0];
+  //   loginBox.style.top = login.style.top;
+  //   loginBox.style.left = login.style.left;
+  // },
   methods: {
     clearActive() {
       for (var i = 0; i < this.list.length; i++) {
@@ -102,7 +94,7 @@ export default {
 <style lang="scss" scoped>
 .login {
   width: 420px;
-  padding: 40px;
+  padding: 20px;
   position: absolute;
   border-radius: 5px;
   display: flex;
@@ -110,6 +102,10 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  background: url("../../../assets/images/loginBox.png");
+  background-size: 100% 100%;
+  top: 30%;
+  left: 36%;
   h1 {
     text-shadow: 0 0 1px #0e947a;
     color: #eefaff;
@@ -120,7 +116,7 @@ export default {
     width: 300px;
     height: auto;
     font-size: 14px;
-    margin: 20px 0 0 0;
+    margin: 10px 0 20px 0;
     .account.active {
       background: linear-gradient(135deg, transparent 6px, rgb(157, 227, 255) 0)
           top left,
@@ -129,7 +125,6 @@ export default {
           right,
         linear-gradient(-135deg, transparent 6px, rgb(157, 227, 255) 0) bottom
           left;
-
       background-size: 50% 50%;
       background-repeat: no-repeat;
     }
@@ -139,7 +134,7 @@ export default {
       line-height: 40px;
       width: 300px;
       height: 40px;
-      margin: 10px 0;
+      margin: 20px 0;
       z-index: 20;
       position: relative;
       background: linear-gradient(135deg, transparent 6px, #5c99bd 0) top left,

@@ -35,7 +35,8 @@ class optionLineFun {
         textStyle: {
           color: '#fff'
         },
-        height: zoomHeight
+        height: zoomHeight,
+        bottom: "0"
       },
       {
         type: 'inside'

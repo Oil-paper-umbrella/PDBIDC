@@ -209,7 +209,7 @@ export default {
   position: relative;
   .bar-sort-menu {
     position: absolute;
-    right: 3%;
+    right: 4%;
     top: 0px;
     .el-dropdown {
       color: white;

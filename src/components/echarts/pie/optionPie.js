@@ -54,7 +54,6 @@ class optionPieFun {
    * @param {判断饼图类型} type 
    */
   firstPieSeries(type) {
-    console.log(type);
     let result = [
       {
         type: 'pie',
@@ -84,8 +83,6 @@ class optionPieFun {
     }
     else
       throw new Error("firstPieSeries param type is coundn't find");
-    console.log("result");
-    console.log(result);
     return result;
   }
 }

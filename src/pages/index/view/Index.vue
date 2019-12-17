@@ -27,9 +27,9 @@
 
 <script>
 // @ is an alias to /src
-let IndexAside =()=>import("@/components/common/IndexAside.vue");
-let IndexNav =()=>import("@/components/common/IndexNav.vue") ;
-let IndexMain =()=>import("@/components/common/IndexMain.vue");
+let IndexAside = () => import("@/components/common/IndexAside.vue");
+let IndexNav = () => import("@/components/common/IndexNav.vue");
+let IndexMain = () => import("@/components/common/IndexMain.vue");
 export default {
   name: "pd-index",
   components: {
@@ -117,7 +117,6 @@ export default {
         background-color: #111739;
         line-height: 60px;
         border-left: 1px solid #848980;
-        overflow: hidden;
       }
       .el-main {
         padding: 10px 10px 0 10px;
@@ -128,6 +127,58 @@ export default {
         display: flex;
       }
     }
+  }
+
+  .el-table {
+    color: white !important;
+  }
+  .el-table td,
+  .el-table th {
+    text-align: center !important;
+  }
+  .el-table thead {
+    color: white !important;
+  }
+  .el-table--border::after,
+  .el-table--group::after,
+  .el-table::before {
+    background-color: #111739 !important;
+  }
+  .el-table th,
+  .el-table tr {
+    background-color: #111739 !important;
+  }
+  .el-table td,
+  .el-table th.is-leaf {
+    border-bottom: 1px solid #585e80 !important;
+  }
+  .el-table--border td,
+  .el-table--border th,
+  .el-table__body-wrapper
+    .el-table--border.is-scrolling-left
+    ~ .el-table__fixed {
+    border-right: 1px solid #585e80 !important;
+  }
+  .el-table--border,
+  .el-table--group {
+    border: 1px solid #585e80 !important;
+  }
+  .el-table--enable-row-hover .el-table__body tr:hover > td {
+    background-color: #0b0f2a !important;
+    // color: #2C9EF3;
+  }
+  .icon-control {
+    margin: 0 5px;
+  }
+  .el-table__empty-block {
+    background-color: #111739 !important;
+  }
+  .el-table__empty-text {
+    color: white !important;
+  }
+  .el-table,
+  .el-table__expanded-cell {
+    background-color: #111739 !important;
   }
 }
 </style>

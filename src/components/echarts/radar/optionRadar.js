@@ -14,7 +14,8 @@ class optionRadarFun {
       type: 'scroll',
       orient: 'vertical',
       right: legendRight,
-      top: '9%',
+      top: '6%',
+      // bottom: '3%',
       selectedMode: 'multiple',
       selected: selectedCity,
       textStyle: new optionPublicFun().textStyle(weight, size)
